@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "prettier": "3.5.3",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "eslint": "^9.22.0",
     "pixi.js": "^7.4.3"
   }
 }
