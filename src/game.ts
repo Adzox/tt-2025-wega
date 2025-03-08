@@ -26,6 +26,10 @@ export function initGame() {
       title: "Intro",
       scene: createIntro(app),
     },
+    {
+      title: "Ace of Shadows",
+      scene: createAceOfShadows(app),
+    },
   ];
   let currentScene = 0;
   const menu = createHeader(
