@@ -14,7 +14,10 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "@pixi/layout": "^1.0.1",
+    "@pixi/ui": "^1.2.0",
     "eslint": "^9.22.0",
-    "pixi.js": "^7.4.3"
+    "pixi.js": "^7.4.3",
+    "tweedle.js": "^2.1.0"
   }
 }
