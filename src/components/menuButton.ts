@@ -50,7 +50,7 @@ export function createMenu(
 ): Container {
   const select = new Select({
     closedBG: createClosedBackground(0x444444, 250, 50, 250 * 0.2, 22, 25),
-    openBG: createOpenedBackground(0x444444, 250, 25, 250*0.2, 22, 25),
+    openBG: createOpenedBackground(0x444444, 250, 35, 250*0.2, 22, 25),
     textStyle: { fill: 0xEBD4CB, fontSize: 14 },
     items: {
       items: menuItems,

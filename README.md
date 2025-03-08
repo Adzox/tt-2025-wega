@@ -39,3 +39,11 @@ For positioning these, I used Pixi.js Layout, which does a decent job with stati
 After some testing, it seemed like Pixi.JS Layout does not handle well when the elements are animated (aka, we are manually positioning them). Therefore, I added some basic centering of the card stacks by manipulating their container.
 
 The animations are driven by tweens going from one position to another, conveniently changing the zIndex of the element once we've reached the zenith of the movement. This helps avoid weird flickering (overlap with other cards) if we were to animate the zIndex at the same time as the position.
+
+### Magic Words
+
+In this example, we are letting the added callback animate each text window in, while we manually animate it out before removing and adding the next one. By clicking with the mouse on the text window, we switch to the next text window.
+
+There seems to be an issue that sometimes, the first emoji will not follow the layout and will be too big. It seems going back later to this scene corrects it, so perhaps has something to do with the timing of adding the element to the stage?
+
+For now, if there is an unsupported emoji listed in the text, it will not be rendered and a warning will be logged.
