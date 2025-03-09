@@ -5,6 +5,7 @@ import createAceOfShadows from "./scenes/aceOfShadows";
 import { createIntro } from "./scenes/intro";
 import { Group } from "tweedle.js";
 import createMagicWords from "./scenes/magicWords/scene";
+import createPhoenixFlame from "./scenes/phoenixFlame/scene";
 
 export function initGame() {
   const app = new Application<HTMLCanvasElement>({
@@ -34,6 +35,10 @@ export function initGame() {
     {
       title: "Magic Words",
       scene: createMagicWords(app),
+    },
+    {
+      title: "Phoenix Flame",
+      scene: createPhoenixFlame(app),
     },
   ];
   let currentScene = 0;
