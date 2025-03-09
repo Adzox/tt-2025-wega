@@ -24,15 +24,14 @@ function createDialogueText(
             content: Sprite.from(emojies[emojiName]),
             styles: {
               position: "center",
-              maxWidth: "100%",
-              maxHeight: "100%",
             },
           },
           styles: {
-            marginLeft: fontSize / 2,
-            marginRight: fontSize,
-            width: fontSize,
-            height: fontSize,
+            display: "inline",
+            marginLeft: fontSize * 0.7,
+            marginRight: fontSize * 0.3,
+            maxHeight: fontSize,
+            width: fontSize * 1.25,
           },
         });
       } else {
