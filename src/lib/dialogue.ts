@@ -1,39 +1,58 @@
-export interface DialogueResponse {
+
+/**
+ * Map between emoji tags in DialogueLine and their image source
+ */
+export type EmojiDict = { [id: string]: string };
+
+/**
+ * Map between avatar name in DialogueLine and their related data
+ */
+export type AvatarDict = { [id: string]: Omit<Avatar, "name"> };
+
+export type Dialogue = {
+    lines: DialogueLine[];
+    emojies: EmojiDict;
+};
+
+export type DialogueLine = {
+    text: string;
+    avatarName: string;
+} & Omit<Avatar, "name">;
+
+interface DialogueText {
+    name: string;
+    text: string;
+}
+
+interface DialogueResponse {
   dialogue: DialogueText[];
   emojies: Emoji[];
   avatars: Avatar[];
 }
 
-export type EmojiDict = { [id: string]: string };
-export type AvatarDict = { [id: string]: Omit<Avatar, "name"> };
-
-export type Dialogues = {
-  dialogues: Dialogue[];
-  emojies: EmojiDict;
-};
-
-export type Dialogue = {
-  text: string;
-  name: string;
-} & Omit<Avatar, "name">;
-
-export interface DialogueText {
-  name: string;
-  text: string;
-}
-
-export interface Emoji {
+interface Emoji {
   name: string;
   url: string;
 }
 
-export interface Avatar {
+interface Avatar {
   name: string;
   url: string;
   position: "left" | "right";
 }
 
-export async function fetchDialogueData(): Promise<Dialogues> {
+/**
+ * Fetches the Dialogue data from upstream
+ * 
+ * To configure where to fetch from, override the following env var:
+ * VITE_DIALOGUE_URL=<Your URL>
+ * 
+ * Note: this function currently has no safety measures or error handling.
+ * The caller will instead have to verify that everything is correct. 
+ * 
+ * @returns Promise to Dialogue data
+ */
+export async function fetchDialogueData(): Promise<Dialogue> {
   var response = await fetch(import.meta.env.VITE_DIALOGUE_URL);
   const data: DialogueResponse = await response.json();
 
@@ -52,12 +71,13 @@ export async function fetchDialogueData(): Promise<Dialogues> {
   }, {});
 
   return {
-    dialogues: data.dialogue.map((d) => {
+    lines: data.dialogue.map((d) => {
       const entry: Omit<Avatar, "name"> =
         d.name in avatarMap ? avatarMap[d.name] : { url: "", position: "left" };
       return {
         ...d,
         ...entry,
+        avatarName: d.name,
       };
     }),
     emojies: emojiMap,

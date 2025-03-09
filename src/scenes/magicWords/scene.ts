@@ -31,7 +31,7 @@ export default function createMagicWords(app: Application): Container {
   root.on("added", async () => {
     if (dialogues.length == 0) {
       const data = await fetchDialogueData();
-      dialogues = data.dialogues.map((d, i) =>
+      dialogues = data.lines.map((d, i) =>
         createDialogueElement(i, d, data.emojies, createSwitchDialogue(i))
       );
     }
