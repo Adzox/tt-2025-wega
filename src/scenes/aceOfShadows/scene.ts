@@ -19,7 +19,7 @@ export function createCard(
   text.anchor.set(0.5, 0.5);
   container.addChild(sprite);
   container.addChild(text);
-  
+
   let position = {
     x: x,
     y: y + yGap * number,
@@ -82,9 +82,9 @@ export default function createAceOfShadows(
     });
   });
 
-  const manualLayout= (w: number, h: number) => {
+  const manualLayout = (w: number, h: number) => {
     container.position.set(w / 2, h / 2);
-  }
+  };
   app.renderer.on("resize", manualLayout);
   manualLayout(app.renderer.width, app.renderer.height);
 

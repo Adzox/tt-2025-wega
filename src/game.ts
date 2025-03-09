@@ -19,7 +19,7 @@ export function initGame() {
   const tweenLoop = () => {
     Group.shared.update();
     requestAnimationFrame(tweenLoop);
-  }
+  };
   tweenLoop();
 
   // Setup scenes and frame

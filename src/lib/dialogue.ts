@@ -53,7 +53,8 @@ export async function fetchDialogueData(): Promise<Dialogues> {
 
   return {
     dialogues: data.dialogue.map((d) => {
-      const entry: Omit<Avatar, "name"> = d.name in avatarMap? avatarMap[d.name] : { url: "", position: "left" };
+      const entry: Omit<Avatar, "name"> =
+        d.name in avatarMap ? avatarMap[d.name] : { url: "", position: "left" };
       return {
         ...d,
         ...entry,

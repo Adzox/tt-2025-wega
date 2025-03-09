@@ -1,11 +1,6 @@
 import { AnimatedSprite, Application, Container, Sprite } from "pixi.js";
 import { Tween } from "tweedle.js";
-import {
-  getBigFireSprite,
-  getSmallFireSprite,
-  getSmokeSprite,
-  createSpark,
-} from "./sprites";
+import { getBigFireSprite, getSmokeSprite, createSpark } from "./sprites";
 import { addParticleSpawner, toSpawnPromise } from "../../lib/particleSpawner";
 
 function addBigFire(

@@ -1,13 +1,8 @@
-import {
-  Application,
-  Container,
-} from "pixi.js";
+import { Application, Container } from "pixi.js";
 
 import { fetchDialogueData } from "../../lib/dialogue";
 import { Layout } from "@pixi/layout";
 import { createDialogueElement, DialogueElement } from "./dialogueElement";
-
-
 
 export default function createMagicWords(app: Application): Container {
   const root = new Container();

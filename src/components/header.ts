@@ -1,6 +1,5 @@
 import { Layout } from "@pixi/layout";
-import { Select } from "@pixi/ui";
-import { Application, Container, Graphics, HTMLText } from "pixi.js";
+import { Application, Container } from "pixi.js";
 import { createMenu } from "./menuButton";
 import { createFpsDisplay } from "./fpsCounter";
 
@@ -13,10 +12,7 @@ export function createHeader(
   root.name = "header";
 
   const layout = new Layout({
-    content: [
-      createMenu(menuItems, onSelectFn),
-      createFpsDisplay(app)
-    ],
+    content: [createMenu(menuItems, onSelectFn), createFpsDisplay(app)],
     styles: {
       position: "center",
       width: "100%",

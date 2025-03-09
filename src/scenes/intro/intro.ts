@@ -46,6 +46,6 @@ export function createIntro(app: Application): Container {
   root.addChild(layout);
   layout.resize(app.renderer.width, app.renderer.height);
   app.renderer.on("resize", (w, h) => layout.resize(w, h));
-  
+
   return root;
 }

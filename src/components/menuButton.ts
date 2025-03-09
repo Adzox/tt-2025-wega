@@ -50,13 +50,13 @@ export function createMenu(
 ): Container {
   const select = new Select({
     closedBG: createClosedBackground(0x444444, 250, 50, 250 * 0.2, 22, 25),
-    openBG: createOpenedBackground(0x444444, 250, 45, 250*0.2, 22, 25),
-    textStyle: { fill: 0xEBD4CB, fontSize: 14 },
+    openBG: createOpenedBackground(0x444444, 250, 45, 250 * 0.2, 22, 25),
+    textStyle: { fill: 0xebd4cb, fontSize: 14 },
     items: {
       items: menuItems,
       backgroundColor: 0x444444,
-      textStyle: { fill: 0xEBD4CB, fontSize: 14 },
-      hoverColor: 0xB6465F,
+      textStyle: { fill: 0xebd4cb, fontSize: 14 },
+      hoverColor: 0xb6465f,
       width: 250,
       height: 50,
     },
