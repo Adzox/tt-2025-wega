@@ -24,14 +24,16 @@ function createDialogueText(
             content: Sprite.from(emojies[emojiName]),
             styles: {
               position: "center",
+              display: "block",
+              width: "100%",
+              height: "100%",
             },
           },
           styles: {
-            display: "inline",
-            marginLeft: fontSize * 0.7,
-            marginRight: fontSize * 0.3,
-            maxHeight: fontSize,
-            width: fontSize * 1.25,
+            display: "block",
+            width: fontSize * 2,
+            marginLeft: 7.5,
+            scale: 0.2,
           },
         });
       } else {
@@ -53,7 +55,7 @@ export type DialogueElement = {
 
   /**
    * Callback for running animations before the window is removed.
-   * 
+   *
    * @returns Promise to be resolved when it is okay to proceed with removing this instance from the stage
    */
   beforeRemoval: () => Promise<void>;
@@ -61,19 +63,19 @@ export type DialogueElement = {
 
 /**
  * Creates a dialogue window element for showing a line of text.
- * 
+ *
  * The line of text may include emojies, which if present in the EmojiDict will be replaced
  * with their image counterpart.
- * 
+ *
  * If no entry exists, a warning will be raised with no other indication of error.
- * 
+ *
  * @param index Number of the line in the dialogue
  * @param line The line to present
  * @param emojis The map of known emojies to inject
  * @param onPointerTap Callback for when the window has been interacted with
  * @param fontSize Font size for the text line
  * @param nameFontSize Font size for the name bar
- * @returns DialogueElement and trigger for animating out the 
+ * @returns DialogueElement and trigger for animating out the
  */
 export function createDialogueElement(
   index: number,
@@ -84,78 +86,94 @@ export function createDialogueElement(
   nameFontSize: number = 26
 ): DialogueElement {
   let dialogueBox = new NineSlicePlane(Texture.from(CardAsset), 4, 4, 4, 4);
-  let profilePicture = line.url
-    ? Sprite.from(line.url)
-    : new Container();
+  let profilePicture = line.url ? Sprite.from(line.url) : " ";
   let nameBox = new NineSlicePlane(Texture.from(CardAsset), 4, 4, 4, 4);
   let textContents = createDialogueText(line.text, emojis, fontSize);
   let name = new HTMLText(line.avatarName, {
     fontSize: nameFontSize,
+    wordWrap: true,
   });
 
   const layout = new Layout({
     id: `dialogue-${index}`,
     content: {
+      name: {
+        content: name,
+      },
       window: {
+        eventMode: "static",
         content: {
+          portrait: {
+            content: {
+              id: `portrait-${index}`,
+              content: " ",
+            },
+          },
+
           text: {
             content: {
-              profile: {
-                content: profilePicture,
-                styles: {
-                  display: "block",
-                  width: "10%",
-                  position: line.position,
-                },
-              },
-              textContents: {
-                content: textContents,
-                styles: {
-                  width: profilePicture.isSprite ? "90%" : "100%",
-                  paddingLeft: 10,
-                  paddingTop: 20,
-                  display: "block",
-                  position: line.position == "left" ? "right" : "left",
-                },
-              },
-            },
-            styles: {
-              display: "block",
-              background: dialogueBox,
-              wordWrap: true,
-              position: "bottomCenter",
-              align: "left",
-              width: "100%",
-              height: "100%",
+              id: `text-${index}`,
+              content: textContents,
             },
           },
-          name: {
-            content: name,
-            styles: {
-              background: nameBox,
-              display: "block",
-              textAlign: "center",
-              paddingLeft: 10,
-              paddingTop: 8,
-              height: 40,
-              marginTop: -40,
-              width: "20%",
-              position: `${line.position}Top`,
-            },
-          },
-        },
-        eventMode: "static",
-        styles: {
-          position: "bottomCenter",
-          width: "100%",
-          height: "20%",
         },
       },
     },
-    styles: {
-      position: "center",
-      width: "100%",
-      height: "100%",
+    globalStyles: {
+      [`dialogue-${index}`]: {
+        width: "100%",
+        height: "30%",
+        position: "bottomCenter",
+      },
+      name: {
+        display: "block",
+        position: `${line.position}Top`,
+        textAlign: "center",
+        align: "center",
+        verticalAlign: "middle",
+        paddingTop: fontSize / 2,
+        paddingLeft: fontSize / 2,
+        paddingRight: fontSize / 2,
+        width: "20%",
+        height: "20%",
+        background: nameBox,
+      },
+      window: {
+        display: "block",
+        position: "bottom",
+        width: "100%",
+        height: "80%",
+        background: dialogueBox,
+      },
+
+      portrait: {
+        background: profilePicture,
+        backgroundSize: "contain",
+        display: "block",
+        height: "80%",
+        width: "20%",
+        position: line.position,
+      },
+      text: {
+        position: line.position == "left" ? "right" : "left",
+        textAlign: line.position,
+        display: "block",
+        height: "80%",
+        width: "80%",
+      },
+
+      [`text-${index}`]: {
+        padding: 8,
+        display: "block",
+        height: "100%",
+        width: "100%",
+      },
+
+      [`portrait-${index}`]: {
+        display: "block",
+        height: "100%",
+        width: "100%",
+      },
     },
   });
   layout.eventMode = "static";
