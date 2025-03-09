@@ -68,3 +68,8 @@ With interest of time, I didn't have more time to setup and debug why loading th
 * User input seems to be needed to set the app to full screen - hence the Intro scene!
   * Did not have more time to investigate that route this time!
 * Requesting fullscreen with the requestFullscreen function does not seem to work on iOS
+* Scale viewport/scene on screen change/use portrait/landscape separated views!
+* Magic Word does not respect device width
+  * The layout library and the text components seems very finnicky
+  * Could have been easier with an alternate design to the text container
+* Magic Word sometimes animates to a color instead of fade in/out.
