@@ -1,8 +1,8 @@
 import { Application, BaseTexture, SCALE_MODES } from "pixi.js";
 
 import { createHeader } from "./components/header";
-import createAceOfShadows from "./scenes/aceOfShadows";
-import { createIntro } from "./scenes/intro";
+import createAceOfShadows from "./scenes/aceOfShadows/scene";
+import { createIntro } from "./scenes/intro/intro";
 import { Group } from "tweedle.js";
 import createMagicWords from "./scenes/magicWords/scene";
 import createPhoenixFlame from "./scenes/phoenixFlame/scene";

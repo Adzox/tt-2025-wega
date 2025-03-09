@@ -1,6 +1,6 @@
 import { Application, Container, HTMLText, Sprite } from "pixi.js";
 
-import CardAsset from "../assets/card.png";
+import CardAsset from "../../assets/card.png";
 import { Easing, Tween } from "tweedle.js";
 
 export function createCard(
